@@ -2,4 +2,4 @@
 
 Date | Time | Event
 
-3.3.2015 | 4 hours | Familiarizing myself with Syndicate game and starting the project. Setting up Git for Unity.
+3.3.2015 | 6 hours | Familiarizing myself with Syndicate game. Set up Git for Unity. Project start. Proof of Concept scene created. Movement and Collider Detection added.
