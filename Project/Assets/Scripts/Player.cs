@@ -55,12 +55,11 @@ public class Player : MonoBehaviour
 			//What happens when collision is with "Enemy" named Game Object
 			//Shorten "coll.gameObject.GetComponent<Enemy>()" to "foe" for convience sake.
 			var foe = coll.gameObject.GetComponent<Enemy>();
-			foe.Health = foe.Health - damage;					//Enemy takes damage
 
-			//Debug.Log (foe.Health);
-			//If enemy's health drops to 0 then remove the game object
-			if (foe.Health <= 0)
-				Destroy(coll.gameObject);
+			bullet = Instantiate(Bullet, transform.position, transform.rotation) as GameObject;
+			Vector3 sp = Camera.main.WorldToScreenPoint(transform.position);
+			Vector3 dir = (Input.mousePosition - sp).normalized;
+			bullet.rigidbody2D.AddForce(dir * 0.001f, ForceMode2D.Impulse);
 		}
 	}
 }
