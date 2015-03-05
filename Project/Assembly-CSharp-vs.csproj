@@ -46,9 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BackBTN.cs" />
      <Compile Include="Assets\Scripts\BulletCollision.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\OptionsBTN.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\QuitBTN.cs" />
      <Compile Include="Assets\Scripts\StartButton.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Games/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>

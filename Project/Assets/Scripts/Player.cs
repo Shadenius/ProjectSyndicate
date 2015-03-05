@@ -46,16 +46,14 @@ public class Player : MonoBehaviour
 		transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
 	}
 
-	//Sets a function what to do on collision
+	//Sets a function what to do on mouse collision
 	void onCollision(Collider2D coll) {
 		if (coll.gameObject.name == "Player") {
 			//What happens when collision is with "Player" named Game Object
 			//Debug.Log ("Player");
 		} else if (coll.gameObject.name == "Enemy") {
 			//What happens when collision is with "Enemy" named Game Object
-			//Shorten "coll.gameObject.GetComponent<Enemy>()" to "foe" for convience sake.
-			var foe = coll.gameObject.GetComponent<Enemy>();
-
+			//Intiliaze bullet prefab as game object. Take bullet's and mouse's location, normalize their distance and add single instance of force.
 			bullet = Instantiate(Bullet, transform.position, transform.rotation) as GameObject;
 			Vector3 sp = Camera.main.WorldToScreenPoint(transform.position);
 			Vector3 dir = (Input.mousePosition - sp).normalized;
