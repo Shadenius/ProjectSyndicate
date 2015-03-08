@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {	
-	private int shootMode;										//The shooting mode. 2 actual bullets | 1 precentage based
+	private int shootMode;										//The shooting mode.
 	private int chanceToHit;									//What chance does player have hit the enemy. 0 - 100
 	private int randomNum;										//"The dice roll" for hit
 	private GameObject bullet;
@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 	private float curHealth;									//player current health
 	private float moveSpeed;									//player movement speed
 	private float timer;										//Wait between shots (prevents rapid fire)
+	private float waitTime;										//Actual time necessary for the wait.
 
 	public Slider HPslider;
 	public Slider WaitSlider;
@@ -24,7 +25,8 @@ public class Player : MonoBehaviour
 	}
 
 	void Start () {
-		shootMode = 1;
+		shootMode = 1;											//1 is % based shooting | 2 is with actual bullets (2 is quite buggy at the moment)
+		waitTime = 1f;											//1 second wait
 		chanceToHit = 85;										//85% chance to hit
 		maxHealth = 10;											//Set player health
 		curHealth = maxHealth;									//Set player current health equal to max
@@ -36,6 +38,9 @@ public class Player : MonoBehaviour
 
 	void Update () {
 		timer += Time.deltaTime;
+		if (timer > waitTime) {
+			timer = waitTime;
+		}
 		WaitSlider.value = timer;
 		HPslider.value = curHealth;
 		//Find Mouse Position on Left Mouse Button Click and check if it hits any colliders
@@ -69,7 +74,7 @@ public class Player : MonoBehaviour
 			//Debug.Log ("Player");
 		} else if (coll.gameObject.name == "Enemy") {
 			//What happens when collision is with "Enemy" named Game Object
-			if (timer > 2f) {
+			if (timer >= waitTime) {
 				if (shootMode == 1) {
 					//Generate random number between 0 and 100.
 					randomNum = Random.Range (0, 100);
@@ -95,7 +100,7 @@ public class Player : MonoBehaviour
 					Vector3 dir = (Input.mousePosition - sp).normalized;
 					bullet.rigidbody2D.AddForce (dir * 0.001f, ForceMode2D.Impulse);
 				}
-				timer -= 2f;
+				timer -= waitTime;
 			}
 		}
 	}

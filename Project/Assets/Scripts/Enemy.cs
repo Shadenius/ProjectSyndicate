@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
@@ -12,7 +11,6 @@ public class Enemy : MonoBehaviour {
 	private Collider2D[] playerSpot;	//2D Collider list of player
 
 	public Transform circleStart;
-	public Slider slider;
 
 	public float Health {
 		get { return health; }
@@ -30,6 +28,9 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timer += Time.deltaTime;
+		if (timer > 2f) {
+			timer = 2f;
+		}
 
 		Raycasting ();
 		Behaviours ();
@@ -37,7 +38,7 @@ public class Enemy : MonoBehaviour {
 
 	void Raycasting () {
 		//Creates 3 unites large circle at circleStart transform's location. 
-		//Turns "Spotted" true if object from "player" layer enters to the circle.
+		//Makes list of all game objects within range in the layer "Player".
 		playerSpot = Physics2D.OverlapCircleAll (circleStart.position, 3f, 1 << LayerMask.NameToLayer("Player"));
 		//if (playerSpot.Length > 0)
 		//	Debug.Log ("Spotted");
@@ -53,13 +54,15 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void Shoot () {
-		if (timer > 2f) {
+		if (timer >= 2f) {
 			randomNum = Random.Range(0, 100);
 			if ( randomNum < chanceToHit) {
 				var foe = playerSpot[0].gameObject.GetComponent<Player>();
-				Debug.Log(foe.CurHealth);
+				//Debug.Log(foe.CurHealth);
 				foe.CurHealth = foe.CurHealth - damage;
-				
+
+				if (foe.CurHealth <= 0)
+					Destroy(playerSpot[0].gameObject);
 			}
 			timer -= 2f;
 		}
