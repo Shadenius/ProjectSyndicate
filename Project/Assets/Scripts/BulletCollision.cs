@@ -19,7 +19,7 @@ public class BulletCollision : MonoBehaviour {
 		if (coll.gameObject.tag == "Enemy") {
 			//Shorten "coll.gameObject.GetComponent<Enemy>()" to "foe" for convinience's sake.
 			var foe = coll.gameObject.GetComponent<Enemy>();
-			Debug.Log("Hit" + foe.Health);
+			//Debug.Log("Hit" + foe.Health);
 			//Enemy takes damage
 			foe.Health = foe.Health - damage;					
 			
