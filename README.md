@@ -9,4 +9,4 @@ Date | Time | Event
 7.3.2015 | 0 hours | Still recovering from the flu.  
 8.3.2015 | 4 hours | Made basic map layout to tPoC scene. Added HUD, reload time and Win & Lose conditions. Basic enemy AI (chase player when in sight). Fully playable now.
 
-| Total time spent : 11 hours |
+| Total time spent : 15 hours |
