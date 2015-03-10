@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour {
 	void Raycasting () {
 		//Creates 3 unites large circle at circleStart transform's location. 
 		//Makes list of all game objects within range in the layer "Player".
-		playerSpot = Physics2D.OverlapCircleAll (circleStart.position, 10f, 1 << LayerMask.NameToLayer("Player"));
+		playerSpot = Physics2D.OverlapCircleAll (circleStart.position, 5f, 1 << LayerMask.NameToLayer("Player"));
 		//if (playerSpot.Length > 0)
 		//	Debug.Log ("Spotted");
 	}
